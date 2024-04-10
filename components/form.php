@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <form action="http://127.0.0.1:8000/api/appointments/store" method="post">
+    <form action="./addAppointments.php" method="post">
 
         <label for="name">Nombre</label>
         <input type="text" name="name" id="name">
@@ -35,7 +35,7 @@
 
         <h3>Tipo de lavado</h3>
 
-        <?php include 'obtenerTipoLavado.php'; ?>
+        <?php include 'getTipeWash.php'; ?>
 
         <div role="contentinfo">
             <label for="wheels">Lavado de llantas</label>
