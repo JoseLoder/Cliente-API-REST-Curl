@@ -25,12 +25,12 @@ if (filter_input_array(INPUT_POST)) {
     // VALIDAR SI LA RESPUESTA ES EXITOSA
     if (isset($response['status']) && $response['status'] === 'success') {
 
+        $ticket = $response['data'];
+
         include 'components/success.php';
     } else if (isset($response['status']) && $response['status'] === 'error') {
 
         $errors = $response['errors'];
-
-        var_dump($errors);
 
         include 'components/form.php';
     } else {
