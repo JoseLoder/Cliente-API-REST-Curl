@@ -23,20 +23,25 @@ function requestApiStore($url, $data)
     // CERRAR LA CONEXION
     curl_close($ch);
 
-    // DECODIFICAR JSON
+    // DECODIFICAR JSON Y RETORNARLO
     return json_decode($response, true);
 }
 
 function getTipeWash($url)
 {
+    // INICIAR CURL
     $ws = curl_init();
 
+    // ESTABLECER CONEXIÓN CURL Y QUE LA RESPUESTA SE GUARDE EN UNA VARIABLE
     curl_setopt($ws, CURLOPT_URL, $url);
     curl_setopt($ws, CURLOPT_RETURNTRANSFER, true);
 
+    // EJECUTAR LA PETICION
     $response = curl_exec($ws);
 
+    // CERRAR LA CONEXION
     curl_close($ws);
 
+    // DECODIFICAR JSON Y RETORNARLO
     return json_decode($response, true);
 }

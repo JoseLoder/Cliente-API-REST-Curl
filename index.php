@@ -1,7 +1,8 @@
 <?php
+// INCLUIR EL ARCHIVO DE FUNCIONES
 include 'logic.php';
 
-// VALIDAR SI SE ENVIO EL FORMULARIO
+// COMPROBAR SI SE ENVIO EL FORMULARIO
 if (filter_input_array(INPUT_POST)) {
 
     // URL DE LA API
@@ -25,19 +26,23 @@ if (filter_input_array(INPUT_POST)) {
     // VALIDAR SI LA RESPUESTA ES EXITOSA
     if (isset($response['status']) && $response['status'] === 'success') {
 
+        // OBTENER EL TICKET DE LA RESPUESTA
         $ticket = $response['data'];
 
         include 'components/success.php';
     } else if (isset($response['status']) && $response['status'] === 'error') {
 
+        // OBTENER LOS ERRORES DE LA RESPUESTA
         $errors = $response['errors'];
 
         include 'components/form.php';
     } else {
 
+        //MOSTRAR ERROR DE CONEXION
         include 'components/error.php';
     }
 } else {
 
+    // MOSTRAR EL FORMULARIO
     include 'components/form.php';
 }

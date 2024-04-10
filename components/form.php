@@ -1,3 +1,21 @@
+<?php
+
+function oldValue($name)
+{
+    if (isset($_POST[$name])) {
+        echo 'value="' . $_POST[$name] . '"';
+    }
+}
+
+function showError($errors, $field)
+{
+    if (isset($errors[$field])) {
+        echo '<span>' . $errors[$field][0] . '</span>';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -76,18 +94,3 @@
 </body>
 
 </html>
-<?php
-
-function oldValue($name)
-{
-    if (isset($_POST[$name])) {
-        echo 'value="' . $_POST[$name] . '"';
-    }
-}
-
-function showError($errors, $field)
-{
-    if (isset($errors[$field])) {
-        echo '<span>' . $errors[$field][0] . '</span>';
-    }
-}

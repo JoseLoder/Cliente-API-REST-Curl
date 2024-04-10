@@ -1,13 +1,3 @@
-<?php
-
-// function showResponse($name)
-// {
-//     if (isset($_POST[$name])) {
-//         echo  $_POST[$name];
-//     }
-// }
-?>
-
 <!DOCTYPE html>
 <html>
 
