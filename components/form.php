@@ -11,39 +11,49 @@
 </head>
 
 <body>
-    <form action="./addAppointments.php" method="post">
+    <form action="./" method="post">
 
         <label for="name">Nombre</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" <?php oldValue('name') ?>>
+        <?php showError(isset($errors) ? $errors : '', 'name') ?>
 
         <label for="phone">Teléfono</label>
-        <input type="text" name="phone" id="phone">
+        <input type="text" name="phone" id="phone" <?php oldValue('phone') ?>>
+        <?php showError(isset($errors) ? $errors : '', 'phone') ?>
 
         <div class="car" role="contentinfo">
 
             <h3>Coche</h3>
             <label for="brand">marca</label>
-            <input type="text" name="brand" id="brand">
+            <input type="text" name="brand" id="brand" <?php oldValue('brand') ?>>
+            <?php showError(isset($errors) ? $errors : '', 'brand') ?>
 
             <label for="model">Modelo</label>
-            <input type="text" name="model" id="model">
+            <input type="text" name="model" id="model" <?php oldValue('model') ?>>
+            <?php showError(isset($errors) ? $errors : '', 'model') ?>
 
             <label for="license_plate">Matrícula</label>
-            <input type="text" name="license_plate" id="license_plate">
+            <input type="text" name="license_plate" id="license_plate" <?php oldValue('license_plate') ?>>
+            <?php showError(isset($errors) ? $errors : '', 'license_plate') ?>
+
 
         </div>
 
         <h3>Tipo de lavado</h3>
 
-        <?php include 'getTipeWash.php'; ?>
+        <?php
+        include 'getTipeWash.php';
+        showError(isset($errors) ? $errors : '', 'tipe_wash_id')
+        ?>
 
         <div role="contentinfo">
             <label for="wheels">Lavado de llantas</label>
-            <input type="checkbox" name="wheels" id="wheels" value="15">
+            <input type="checkbox" name="wheels" id="wheels" value="15" <?php echo isset($_POST['wheels']) ? 'checked' : '' ?>>
         </div>
 
         <label for="entry">Fecha</label>
-        <input type="date" name="entry" id="entry">
+        <input type="date" name="entry" id="entry" <?php oldValue('entry') ?>>
+        <?php showError(isset($errors) ? $errors : '', 'entry') ?>
 
         <input type="submit" value="Enviar">
 
@@ -56,8 +66,28 @@
             text-align: center;
             gap: 1rem;
         }
+
+        span {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 
 </body>
 
 </html>
+<?php
+
+function oldValue($name)
+{
+    if (isset($_POST[$name])) {
+        echo 'value="' . $_POST[$name] . '"';
+    }
+}
+
+function showError($errors, $field)
+{
+    if (isset($errors[$field])) {
+        echo '<span>' . $errors[$field][0] . '</span>';
+    }
+}

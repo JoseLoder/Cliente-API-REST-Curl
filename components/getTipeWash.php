@@ -1,24 +1,25 @@
 <?php
-$ws = curl_init('http://127.0.0.1:8000/api/appointments/create');
-curl_setopt($ws, CURLOPT_RETURNTRANSFER, true);
-$respuesta = curl_exec($ws);
-curl_close($ws);
 
-$tipesWash = json_decode($respuesta, true);
+$urlTipeWash = 'http://127.0.0.1:8000/api/appointments/create';
 
-function insertTipeWash($tipesWash)
+// OBTENER LOS TIPOS DE LAVADO
+$tipesWash = getTipeWash($urlTipeWash);
+
+// MOSTRAR LOS TIPOS DE LAVADO
+function showTipeWash($tipesWash, $post = null)
 {
     foreach ($tipesWash as $tipe) {
-        echo "<option value='" . $tipe['id'] . "'>" . $tipe['description'] . "</option>";
+        $selected = $post == $tipe['id'] ? 'selected' : '';
+        echo '<option value="' . $tipe['id'] . '"' . $selected . '>' . $tipe['description'] . '</option>';
     }
 }
 
-if ($tipesWash['status'] === 'success') {
+if (isset($tipesWash['status']) && $tipesWash['status'] === 'success') {
 ?>
 
     <select name="tipe_wash_id">
         <option value="">Elige un tipo de lavado..</option>
-        <?php insertTipeWash($tipesWash['data']); ?>
+        <?php showTipeWash($tipesWash['data'], $_POST['tipe_wash_id']); ?>
     </select>
 
 <?php
