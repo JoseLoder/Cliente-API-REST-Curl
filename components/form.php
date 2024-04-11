@@ -91,6 +91,19 @@ function showError($errors, $field)
         }
     </style>
 
+    <!--
+    Campos del formulario:
+Campo name=“name” type=“text”
+Campo name="phone” type=“text”
+Campo name="brand” type=“text”
+Campo name="model” type=“text”
+Campo name="license_plate” type=“text”
+Campo name="tipe_wash_id” type=“select”
+Campo name="wheels” type=“checkbox” value=“15”
+Campo name="entry” type=“date”
+Botón de envío
+-->
+
 </body>
 
 </html>
